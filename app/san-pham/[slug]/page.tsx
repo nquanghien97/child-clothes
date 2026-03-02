@@ -132,12 +132,13 @@ export default function ProductDetailPage() {
                 {added ? "✓ Đã thêm vào giỏ!" : "🛒 Thêm vào giỏ hàng"}
               </button> */}
             </div>
-            <button
-              className="px-6 py-4 rounded-full bg-linear-to-r from-violet-500 to-violet-400 text-white font-black text-base border-none cursor-pointer shadow-[0_4px_20px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 hover:scale-[1.01] transition-all duration-300 whitespace-nowrap"
+            <Link
+              href="/thanh-toan"
               onClick={handleAdd}
+              className="px-6 py-4 rounded-full bg-linear-to-r from-violet-500 to-violet-400 text-white font-black text-base border-none cursor-pointer shadow-[0_4px_20px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 hover:scale-[1.01] transition-all duration-300 whitespace-nowrap"
             >
-              <Link href="/thanh-toan">Thanh toán ngay</Link>
-            </button>
+              Thanh toán ngay
+            </Link>
           </div>
 
           {/* Trust tags */}
