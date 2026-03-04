@@ -78,16 +78,18 @@ export default function ProductCard({
 
       {/* Info */}
       <div className="p-5">
-        <p className="text-[11px] text-[#ff469e] font-bold uppercase tracking-wider mb-1.5">
-          {product.category}
-        </p>
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <p className="text-[11px] text-[#ff469e] font-bold uppercase tracking-wider">
+            {product.category}
+          </p>
+          <div className="flex items-center gap-1">
+            <StarRating rating={product.rating} />
+          <span className="text-gray-400 text-xs">({product.reviews})</span>
+          </div>
+        </div>
         <h3 className="font-black text-base text-[#2d1b2e] leading-tight mb-2">
           {product.name}
         </h3>
-        <div className="flex items-center gap-2 mb-3">
-          <StarRating rating={product.rating} />
-          <span className="text-gray-400 text-xs">({product.reviews})</span>
-        </div>
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-2">
             <span className="text-[#ff469e] font-black text-xl">
@@ -97,7 +99,7 @@ export default function ProductCard({
               {formatPrice(product.originalPrice)}
             </span>
           </div>
-          <div className="flex gap-1">
+          {/* <div className="flex gap-1">
             {product.colors.slice(0, 3).map((c) => (
               <div
                 key={c}
@@ -105,7 +107,7 @@ export default function ProductCard({
                 style={{ background: c }}
               />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

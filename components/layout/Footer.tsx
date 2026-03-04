@@ -91,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-pink-500/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-[#7a5a7e] text-sm">
-          <span>© 2025 KidStyle. All rights reserved.</span>
+          <span>© 2025 Velari. All rights reserved.</span>
           <span>Made with 💕 for little ones</span>
         </div>
       </div>

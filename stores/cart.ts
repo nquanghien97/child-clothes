@@ -3,7 +3,6 @@ import { create } from 'zustand';
 
 export interface CartItem extends ProductEntity{
   selectedSize: string;
-  selectedColor: string;
   quantity: number;
 }
 

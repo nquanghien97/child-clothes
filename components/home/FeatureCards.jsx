@@ -8,7 +8,7 @@ const features = [
 export default function FeatureCards() {
   return (
     <section className="bg-linear-to-r from-[#ff469e] via-[#ff89c0] to-[#ffb3d9]">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <div

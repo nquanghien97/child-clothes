@@ -6,8 +6,8 @@ export interface ProductEntity {
   originalPrice: number;
   category: string;
   badge: string | null;
-  colors: string[];
-  colorNames: string[];
+  // colors: string[];
+  // colorNames: string[];
   sizes: string[];
   rating: number;
   reviews: number;

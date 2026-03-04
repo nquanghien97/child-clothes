@@ -20,9 +20,9 @@ export default function ProductGrid() {
       : products.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20" id="products">
+    <section className="max-w-7xl mx-auto px-6 py-8" id="products">
       {/* Heading */}
-      <div className="text-center mb-14">
+      <div className="text-center mb-8">
         <p className="text-[#ff469e] font-bold text-xs tracking-[3px] uppercase mb-3">
           ✨ Sản phẩm nổi bật
         </p>
@@ -35,7 +35,7 @@ export default function ProductGrid() {
       </div>
 
       {/* Category filter */}
-      <div className="flex gap-2.5 flex-wrap justify-center mb-14">
+      <div className="flex gap-2.5 flex-wrap justify-center mb-8">
         {categories.map((cat) => (
           <button
             key={cat}

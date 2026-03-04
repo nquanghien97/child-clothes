@@ -9,9 +9,9 @@ export default function ProductTabs({ product }) {
   const [activeTab, setActiveTab] = useState("detail");
 
   return (
-    <div className="mt-20">
+    <div className="mt-4">
       {/* Tab headers */}
-      <div className="flex gap-1 border-b-2 border-pink-100/60 mb-12">
+      <div className="flex gap-1 border-b-2 border-pink-100/60 mb-4">
         {[
           ["detail", "📋 Chi tiết sản phẩm"],
           ["reviews", "⭐ Đánh giá"],
@@ -49,7 +49,7 @@ export default function ProductTabs({ product }) {
               ["Chất liệu", product.material],
               ["Độ tuổi phù hợp", product.age],
               ["Danh mục", product.category],
-              ["Màu có sẵn", `${product.colors.length} màu`],
+              // ["Màu có sẵn", `${product.colors.length} màu`],
               ["Size có sẵn", product.sizes.join(", ")],
             ].map(([k, v]) => (
               <div

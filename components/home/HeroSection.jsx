@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[#fff0f7] via-[#ffe8f3] to-[#ffd6ee] py-20 px-6">
+    <section className="relative overflow-hidden bg-linear-to-br from-[#fff0f7] via-[#ffe8f3] to-[#ffd6ee] py-8 px-6">
       {/* Decorative blobs */}
       {[
         { size: 400, x: "60%", y: "-20%", opacity: 0.06 },
@@ -79,7 +79,7 @@ export default function HeroSection() {
             </button> */}
           </div>
 
-          <div className="flex gap-10 mt-11">
+          <div className="flex gap-10 mt-8">
             {[
               ["500+", "Sản phẩm"],
               ["50K+", "Khách hàng"],
