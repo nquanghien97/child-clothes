@@ -43,131 +43,145 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-4 pb-4 animate-[fadeUp_0.5s_ease_both]">
-      {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-        <Link
-          className="text-[#ff469e] font-semibold cursor-pointer hover:underline"
-          href="/"
+    <>
+      <div className="flex gap-4 items-center py-2 justify-center fixed bottom-0 left-0 right-0 bg-[#ccc] z-999 md:hidden">
+        <div className="flex justify-between gap-4">
+          <QuantitySelector qty={qty} onChange={setQty} />
+        </div>
+        <button
+          disabled={selectedSize === null}
+          onClick={handleAdd}
+          className={`px-6 py-3 md:py-4 rounded-full ${selectedSize ? 'bg-linear-to-r from-violet-500 to-violet-400 text-white' : 'bg-gray-200 text-gray-400'} font-black text-base border-none cursor-pointer shadow-[0_4px_20px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 hover:scale-[1.01] transition-all duration-300 whitespace-nowrap`}
         >
-          Trang chủ
-        </Link>
-        <span>›</span>
-        <span className="text-[#ff469e] font-semibold cursor-pointer hover:underline">
-          {product.category}
-        </span>
-        <span>›</span>
-        <span className="text-gray-600">{product.name}</span>
-      </nav>
-
-      {/* Tags */}
-      <div className="flex gap-2.5 mb-4 flex-wrap">
-        <Badge label={product.badge} />
-        <span className="bg-emerald-100 text-emerald-600 text-xs font-bold px-3.5 py-1 rounded-lg">
-          Còn hàng
-        </span>
+          Mua ngay
+        </button>
       </div>
+      <div className="max-w-7xl mx-auto px-6 py-4 pb-4 animate-[fadeUp_0.5s_ease_both]">
+        {/* Breadcrumb */}
+        {/* <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
+          <Link
+            className="text-[#ff469e] font-semibold cursor-pointer hover:underline"
+            href="/"
+          >
+            Trang chủ
+          </Link>
+          <span>›</span>
+          <span className="text-[#ff469e] font-semibold cursor-pointer hover:underline">
+            {product.category}
+          </span>
+          <span>›</span>
+          <span className="text-gray-600">{product.name}</span>
+        </nav> */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Left – Gallery */}
-        <ImageSlider images={product.images} name={product.name} />
+        {/* Tags */}
+        {/* <div className="flex gap-2.5 mb-4 flex-wrap">
+          <Badge label={product.badge} />
+          <span className="bg-emerald-100 text-emerald-600 text-xs font-bold px-3.5 py-1 rounded-lg">
+            Còn hàng
+          </span>
+        </div> */}
 
-        {/* Right – Info */}
-        <div>
-          {/* Price box mobile */}
-          <div className="flex items-center justify-between gap-5 bg-pink-50 rounded-2xl py-2 px-6 mb-2 md:hidden">
-            <span className="font-black text-2xl text-[#ff469e] leading-none">
-              {formatPrice(product.price)}
-            </span>
-            <div className="flex items-center gap-2">
-              <div className="text-gray-400 text-base line-through">
-                {formatPrice(product.originalPrice)}
-              </div>
-              <span className="bg-red-500 text-white text-xs font-black px-2.5 py-0.5 rounded-lg">
-                -{discount}%
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Left – Gallery */}
+          <ImageSlider images={product.images} name={product.name} />
+
+          {/* Right – Info */}
+          <div>
+            {/* Price box mobile */}
+            <div className="flex items-center justify-between gap-5 bg-pink-50 rounded-2xl py-2 px-6 mb-2 md:hidden">
+              <span className="font-black text-2xl text-[#ff469e] leading-none">
+                {formatPrice(product.price)}
               </span>
-            </div>
-          </div>
-
-          <h1 className="font-black text-xl text-[#2d1b2e] leading-tight mb-2">
-            {product.name}
-          </h1>
-
-          {/* Price box desktop */}
-          <div className="flex items-center gap-5 bg-pink-50 rounded-2xl px-6 py-5 mb-8 max-md:hidden">
-            <span className="font-black text-[38px] text-[#ff469e] leading-none">
-              {formatPrice(product.price)}
-            </span>
-            <div>
-              <div className="text-gray-400 text-base line-through">
-                {formatPrice(product.originalPrice)}
+              <div className="flex items-center gap-2">
+                <div className="text-gray-400 text-base line-through">
+                  {formatPrice(product.originalPrice)}
+                </div>
+                <span className="bg-red-500 text-white text-xs font-black px-2.5 py-0.5 rounded-lg">
+                  -{discount}%
+                </span>
               </div>
-              <span className="bg-red-500 text-white text-xs font-black px-2.5 py-0.5 rounded-lg">
-                -{discount}%
-              </span>
             </div>
-          </div>
 
-          {/* <ColorPicker
-            colors={product.colors}
-            colorNames={product.colorNames}
-            selected={selectedColor}
-            onChange={setSelectedColor}
-          /> */}
+            <h1 className="font-black text-xl text-[#2d1b2e] leading-tight mb-2">
+              {product.name}
+            </h1>
 
-          <SizePicker
-            sizes={product.sizes}
-            selected={selectedSize}
-            onChange={setSelectedSize}
-            product={product}
-          />
+            {/* Price box desktop */}
+            <div className="flex items-center gap-5 bg-pink-50 rounded-2xl px-6 py-5 mb-8 max-md:hidden">
+              <span className="font-black text-[38px] text-[#ff469e] leading-none">
+                {formatPrice(product.price)}
+              </span>
+              <div>
+                <div className="text-gray-400 text-base line-through">
+                  {formatPrice(product.originalPrice)}
+                </div>
+                <span className="bg-red-500 text-white text-xs font-black px-2.5 py-0.5 rounded-lg">
+                  -{discount}%
+                </span>
+              </div>
+            </div>
 
-          {/* Quantity + CTA */}
-          <div className="flex gap-4 items-center mb-7 sticky bottom-0 justify-center">
-            <div className="flex justify-between gap-4">
-              <QuantitySelector qty={qty} onChange={setQty} />
-              {/* <button
-                onClick={handleAdd}
+            {/* <ColorPicker
+              colors={product.colors}
+              colorNames={product.colorNames}
+              selected={selectedColor}
+              onChange={setSelectedColor}
+            /> */}
+
+            <SizePicker
+              sizes={product.sizes}
+              selected={selectedSize}
+              onChange={setSelectedSize}
+              product={product}
+            />
+
+            {/* Quantity + CTA */}
+            <div className="flex gap-4 items-center mb-7 justify-center max-md:hidden">
+              <div className="flex justify-between gap-4">
+                <QuantitySelector qty={qty} onChange={setQty} />
+                {/* <button
+                  onClick={handleAdd}
+                  disabled={selectedSize === null}
+                  className={`flex-1 p-4 rounded-full font-black text-base transition-all duration-300 border-none cursor-pointer ${added
+                      ? "bg-linear-to-r from-emerald-500 to-emerald-400 text-white shadow-[0_4px_20px_rgba(16,185,129,0.4)]"
+                      : selectedSize === null
+                        ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                        : "bg-linear-to-r from-[#ff469e] to-[#ff89c0] text-white shadow-[0_4px_20px_rgba(255,70,158,0.4)] hover:-translate-y-0.5 hover:scale-[1.01]"
+                    }`}
+                >
+                  {added ? "✓ Đã thêm vào giỏ!" : "🛒 Thêm vào giỏ hàng"}
+                </button> */}
+              </div>
+              <button
                 disabled={selectedSize === null}
-                className={`flex-1 p-4 rounded-full font-black text-base transition-all duration-300 border-none cursor-pointer ${added
-                    ? "bg-linear-to-r from-emerald-500 to-emerald-400 text-white shadow-[0_4px_20px_rgba(16,185,129,0.4)]"
-                    : selectedSize === null
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : "bg-linear-to-r from-[#ff469e] to-[#ff89c0] text-white shadow-[0_4px_20px_rgba(255,70,158,0.4)] hover:-translate-y-0.5 hover:scale-[1.01]"
-                  }`}
+                onClick={handleAdd}
+                className={`px-6 py-3 md:py-4 rounded-full ${selectedSize ? 'bg-linear-to-r from-violet-500 to-violet-400 text-white' : 'bg-gray-200 text-gray-400'} font-black text-base border-none cursor-pointer shadow-[0_4px_20px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 hover:scale-[1.01] transition-all duration-300 whitespace-nowrap`}
               >
-                {added ? "✓ Đã thêm vào giỏ!" : "🛒 Thêm vào giỏ hàng"}
-              </button> */}
+                Mua ngay
+              </button>
             </div>
-            <button
-              disabled={selectedSize === null}
-              onClick={handleAdd}
-              className={`px-6 py-3 md:py-4 rounded-full ${selectedSize ? 'bg-linear-to-r from-violet-500 to-violet-400 text-white' : 'bg-gray-200 text-gray-400'} font-black text-base border-none cursor-pointer shadow-[0_4px_20px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 hover:scale-[1.01] transition-all duration-300 whitespace-nowrap`}
-            >
-              Mua ngay
-            </button>
-          </div>
 
-          {/* Trust tags */}
-          <div className="flex gap-3 flex-wrap">
-            {[
-              ["🚀", "Giao hàng 2-3 ngày"],
-              ["♻️", "Đổi trả 30 ngày"],
-              ["🏆", "Chính hãng 100%"],
-            ].map(([ic, t]) => (
-              <div
-                key={t}
-                className="flex items-center gap-1.5 text-[#7a5a7e] text-xs font-semibold bg-pink-50 rounded-xl px-3.5 py-2 border border-pink-100/40"
-              >
-                <span>{ic}</span>
-                {t}
-              </div>
-            ))}
+            {/* Trust tags */}
+            <div className="flex gap-3 flex-wrap">
+              {[
+                ["🚀", "Giao hàng 2-3 ngày"],
+                ["♻️", "Đổi trả 30 ngày"],
+                ["🏆", "Chính hãng 100%"],
+              ].map(([ic, t]) => (
+                <div
+                  key={t}
+                  className="flex items-center gap-1.5 text-[#7a5a7e] text-xs font-semibold bg-pink-50 rounded-xl px-3.5 py-2 border border-pink-100/40"
+                >
+                  <span>{ic}</span>
+                  {t}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <ProductTabs product={product} />
-    </div>
+        <ProductTabs product={product} />
+      </div>
+    </>
   );
 }
