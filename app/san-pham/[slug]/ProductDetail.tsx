@@ -1,9 +1,7 @@
 "use client";
 
-import Badge from "@/components/ui/Badge";
 import { products } from "@/lib/data";
 import { generateSlug } from "@/utils/generateSlug";
-import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import ImageSlider from "@/components/product/ImageSlider";
@@ -13,6 +11,9 @@ import { formatPrice } from "@/utils/formatPrice";
 import SizePicker from "@/components/product/SizePicker";
 import QuantitySelector from "@/components/product/QuantitySelector";
 import ProductTabs from "@/components/product/ProductTabs";
+import StarRating from "@/components/ui/StarRating";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -40,11 +41,15 @@ export default function ProductDetailPage() {
       // selectedColor: product.colors[selectedColor],
       quantity: qty,
     });
+    router.push('/thanh-toan');
   };
 
   return (
     <>
       <div className="flex gap-4 items-center p-2 justify-center fixed bottom-0 left-0 right-0 bg-pink-200 z-999 md:hidden">
+        <Link href="tel:0123456789">
+          <Image src="/logo.png" alt="Logo" width={60} height={60} />
+        </Link>
         <div className="flex justify-between gap-4">
           <QuantitySelector qty={qty} onChange={setQty} />
         </div>
@@ -56,7 +61,7 @@ export default function ProductDetailPage() {
           Mua ngay
         </button>
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-4 pb-4 animate-[fadeUp_0.5s_ease_both]">
+      <div className="max-w-7xl mx-auto pb-4 animate-[fadeUp_0.5s_ease_both]">
         {/* Breadcrumb */}
         {/* <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
           <Link
@@ -86,19 +91,21 @@ export default function ProductDetailPage() {
           <ImageSlider images={product.images} name={product.name} />
 
           {/* Right – Info */}
-          <div>
+          <div className="px-2">
             {/* Price box mobile */}
-            <div className="flex items-center justify-between gap-5 bg-pink-50 rounded-2xl py-2 px-6 mb-2 md:hidden">
-              <span className="font-black text-2xl text-[#ff469e] leading-none">
-                {formatPrice(product.price)}
-              </span>
+            <div className="flex flex-col rounded-2xl py-2 md:hidden">
+              <div className="flex gap-2">
+                <span className="font-black text-2xl leading-none">
+                  {formatPrice(product.price)}
+                </span>
+                <span className="text-[#ff469e] border-[1.5px] border-[#ff379b] rounded-[15px_20px_20px_0px] text-sm font-black px-2.5 py-0.5">
+                  -{discount}%
+                </span>
+              </div>
               <div className="flex items-center gap-2">
                 <div className="text-gray-400 text-base line-through">
                   {formatPrice(product.originalPrice)}
                 </div>
-                <span className="bg-red-500 text-white text-xs font-black px-2.5 py-0.5 rounded-lg">
-                  -{discount}%
-                </span>
               </div>
             </div>
 
@@ -128,11 +135,32 @@ export default function ProductDetailPage() {
               onChange={setSelectedColor}
             /> */}
 
+            <div className="flex mb-4">
+              <div className="flex gap-4 items-center">
+                <StarRating rating={product.rating} size="text-[18px]" />
+                <p className="text-gray-400">Đã bán <span className="text-black">1M+</span></p>
+              </div>
+            </div>
+
+            <div className="bg-pink-50 text-[12px] flex justify-between p-2 mb-4">
+              <div className="flex gap-1 items-center">
+                <Image src="/chinh-hang.svg" alt="Chính hãng" width={16} height={16} />
+                Chính hãng 100%
+              </div>
+              <div className="flex gap-1 items-center">
+                <Image src="/doi-tra.svg" alt="Đổi trả" width={16} height={16} />
+                Đổi trả dễ dàng
+              </div>
+              <div className="flex gap-1 items-center">
+                <Image src="/hai-long.svg" alt="Hài lòng" width={16} height={16} />
+                Luôn hài lòng
+              </div>
+            </div>
+
             <SizePicker
               sizes={product.sizes}
               selected={selectedSize}
               onChange={setSelectedSize}
-              product={product}
             />
 
             {/* Quantity + CTA */}

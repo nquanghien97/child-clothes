@@ -1,12 +1,10 @@
 "use client";
 
-import { ProductEntity } from "@/entity/product";
-import StarRating from "../ui/StarRating";
 import { Dispatch, SetStateAction } from "react";
 
-export default function SizePicker({ sizes, selected, onChange, product }: { sizes: string[]; selected: number | null; onChange: Dispatch<SetStateAction<number | null>>; product: ProductEntity }) {
+export default function SizePicker({ sizes, selected, onChange }: { sizes: string[]; selected: number | null; onChange: Dispatch<SetStateAction<number | null>> }) {
   return (
-    <div className="mb-4">
+    <div className="mb-4 bg-white p-2 rounded-xl shadow-xl">
       <div className="flex items-center justify-between mb-3">
         <div className="font-bold text-[#2d1b2e]">
           Size:{" "}
@@ -15,15 +13,6 @@ export default function SizePicker({ sizes, selected, onChange, product }: { siz
           ) : (
             <span className="text-gray-300 font-normal">Chọn size</span>
           )}
-        </div>
-        <div className="flex flex-col items-center gap-3">
-          <div className="flex gap-1 items-center">
-            <StarRating rating={product.rating} size="text-[18px]" />
-            <span className="text-amber-400 font-bold">{product.rating}</span>
-          </div>
-          {/* <span className="text-gray-400 text-sm">
-            ({product.reviews} đánh giá)
-          </span> */}
         </div>
       </div>
 

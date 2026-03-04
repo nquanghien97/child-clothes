@@ -1,4 +1,4 @@
-import ProductDetailPage from "./Main";
+import ProductDetailPage from "./ProductDetail";
 
 export default function Page() {
 
