@@ -16,12 +16,14 @@ export default function SizePicker({ sizes, selected, onChange, product }: { siz
             <span className="text-gray-300 font-normal">Chọn size</span>
           )}
         </div>
-        <div className="flex items-center gap-3">
-          <StarRating rating={product.rating} size="text-[18px]" />
-          <span className="text-amber-400 font-bold">{product.rating}</span>
-          <span className="text-gray-400 text-sm">
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex gap-1 items-center">
+            <StarRating rating={product.rating} size="text-[18px]" />
+            <span className="text-amber-400 font-bold">{product.rating}</span>
+          </div>
+          {/* <span className="text-gray-400 text-sm">
             ({product.reviews} đánh giá)
-          </span>
+          </span> */}
         </div>
       </div>
 
@@ -31,8 +33,8 @@ export default function SizePicker({ sizes, selected, onChange, product }: { siz
             key={i}
             onClick={() => onChange(i)}
             className={`px-2 py-1 rounded-2xl text-sm font-bold border-2 transition-all duration-200 ${i === selected
-                ? "bg-[#ff469e] border-[#ff469e] text-white scale-105 shadow-[0_4px_12px_rgba(255,70,158,0.35)]"
-                : "border-pink-200 text-[#9e7da3] bg-white hover:border-[#ff469e] hover:text-[#ff469e]"
+              ? "bg-[#ff469e] border-[#ff469e] text-white scale-105 shadow-[0_4px_12px_rgba(255,70,158,0.35)]"
+              : "border-pink-200 text-[#9e7da3] bg-white hover:border-[#ff469e] hover:text-[#ff469e]"
               }`}
           >
             {size}
@@ -42,7 +44,7 @@ export default function SizePicker({ sizes, selected, onChange, product }: { siz
 
       {selected === null && (
         <p className="text-orange-500 text-xs mt-2 font-semibold">
-          * Vui lòng chọn size trước khi thêm vào giỏ
+          * Vui lòng chọn size trước khi mua hàng
         </p>
       )}
     </div>

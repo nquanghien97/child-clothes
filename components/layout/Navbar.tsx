@@ -62,14 +62,15 @@ export default function Navbar() {
           : "bg-white/85 backdrop-blur-xl"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-center h-16">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-center md:h-16 h-12">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo-ngang.png"
-            width={160}
+            width={120}
             height={80}
             alt="Logo"
+            className="w-full h-full"
           />
         </Link>
 
