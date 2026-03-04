@@ -30,7 +30,7 @@ export default function SizePicker({ sizes, selected, onChange, product }: { siz
           <button
             key={i}
             onClick={() => onChange(i)}
-            className={`px-5 py-2.5 rounded-2xl text-sm font-bold border-2 transition-all duration-200 ${i === selected
+            className={`px-2 py-1 rounded-2xl text-sm font-bold border-2 transition-all duration-200 ${i === selected
                 ? "bg-[#ff469e] border-[#ff469e] text-white scale-105 shadow-[0_4px_12px_rgba(255,70,158,0.35)]"
                 : "border-pink-200 text-[#9e7da3] bg-white hover:border-[#ff469e] hover:text-[#ff469e]"
               }`}

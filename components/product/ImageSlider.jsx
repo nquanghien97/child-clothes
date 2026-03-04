@@ -12,7 +12,7 @@ export default function ImageSlider({ images, name }) {
   return (
     <div>
       {/* Main image */}
-      <div className="relative rounded-3xl overflow-hidden bg-pink-50 aspect-square shadow-[0_12px_48px_rgba(255,70,158,0.12)] mb-4">
+      <div className="relative rounded-3xl overflow-hidden bg-pink-50 aspect-square shadow-[0_12px_48px_rgba(255,70,158,0.12)]">
         <Image
           width={400}
           height={400}
@@ -49,7 +49,7 @@ export default function ImageSlider({ images, name }) {
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 max-md:hidden">
         {images.map((img, i) => (
           <button
             key={i}

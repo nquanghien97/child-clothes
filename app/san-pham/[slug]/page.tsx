@@ -61,12 +61,12 @@ export default function ProductDetailPage() {
       </nav>
 
       {/* Tags */}
-          <div className="flex gap-2.5 mb-4 flex-wrap">
-            <Badge label={product.badge} />
-            <span className="bg-emerald-100 text-emerald-600 text-xs font-bold px-3.5 py-1 rounded-lg">
-              Còn hàng
-            </span>
-          </div>
+      <div className="flex gap-2.5 mb-4 flex-wrap">
+        <Badge label={product.badge} />
+        <span className="bg-emerald-100 text-emerald-600 text-xs font-bold px-3.5 py-1 rounded-lg">
+          Còn hàng
+        </span>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Left – Gallery */}
@@ -89,7 +89,7 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          <h1 className="font-black text-[34px] text-[#2d1b2e] leading-tight mb-4">
+          <h1 className="font-black text-2xl text-[#2d1b2e] leading-tight mb-4">
             {product.name}
           </h1>
 
