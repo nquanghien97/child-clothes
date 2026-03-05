@@ -7,6 +7,17 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Velari - Thời trang trẻ em cao cấp",
   description: "Velari - Nơi phong cách và sự thoải mái hòa quyện trong từng thiết kế thời trang trẻ em cao cấp. Khám phá bộ sưu tập đa dạng với chất liệu mềm mại, kiểu dáng hiện đại, và màu sắc tươi sáng, mang đến cho bé yêu của bạn sự tự tin và niềm vui trong từng bước đi.",
+  openGraph: {
+    title: "Velari - Thời trang trẻ em cao cấp",
+    description: "Velari - Nơi phong cách và sự thoải mái hòa quyện trong từng thiết kế thời trang trẻ em cao cấp. Khám phá bộ sưu tập đa dạng với chất liệu mềm mại, kiểu dáng hiện đại, và màu sắc tươi sáng, mang đến cho bé yêu của bạn sự tự tin và niềm vui trong từng bước đi.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 const beVietNam = Be_Vietnam_Pro({

@@ -9,7 +9,7 @@ export default function ProductTabs({ product }) {
   const [activeTab, setActiveTab] = useState("detail");
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 px-2">
       {/* Tab headers */}
       <div className="flex gap-1 border-b-2 border-pink-100/60 mb-4">
         {[
