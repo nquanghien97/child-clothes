@@ -17,7 +17,7 @@ export default function OrderSummary({
   // promo: string
 }) {
   const total = cart.reduce((s, i) => s + i.price * (i.quantity || 1), 0);
-  const shipping = total > 500000 ? 0 : 30000;
+  const shipping = total > 500000 ? 0 : 0;
   // const discount = promo === "KIDSTYLE40" ? Math.round(total * 0.4) : 0;
   const finalTotal = total + shipping; // - discount;
 

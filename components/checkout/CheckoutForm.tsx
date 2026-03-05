@@ -1,12 +1,12 @@
 "use client";
 
 import { CheckoutFormType } from "@/app/thanh-toan/page";
+import Image from "next/image";
 
 const inputCls = (err: string | undefined) =>
-  `w-full px-5 py-3.5 rounded-2xl text-sm font-semibold text-[#2d1b2e] bg-pink-50/60 transition-all duration-200 outline-none focus:shadow-[0_0_0_3px_rgba(255,70,158,0.12)] ${
-    err
-      ? "border-2 border-red-400"
-      : "border-2 border-pink-200/60 focus:border-[#ff469e]"
+  `w-full px-5 py-3.5 rounded-2xl text-sm font-semibold text-[#2d1b2e] bg-pink-50/60 transition-all duration-200 outline-none focus:shadow-[0_0_0_3px_rgba(255,70,158,0.12)] ${err
+    ? "border-2 border-red-400"
+    : "border-2 border-pink-200/60 focus:border-[#ff469e]"
   }`;
 
 export default function CheckoutForm({ form, errors, onChange }: { form: CheckoutFormType, errors: Record<string, string | undefined>, onChange: (key: string, value: string) => void }) {
@@ -28,7 +28,8 @@ export default function CheckoutForm({ form, errors, onChange }: { form: Checkou
   );
 
   const paymentOptions = [
-    { val: "cod", ic: "💰", title: "Thanh toán khi nhận hàng", sub: "Miễn phí, nhanh chóng" }
+    { val: "cod", ic: "💰", title: "Thanh toán khi nhận hàng", sub: "Miễn phí, nhanh chóng" },
+    { val: 'banking', ic: '🏦', title: 'Chuyển khoản ngân hàng', sub: 'Hỗ trợ nhiều ngân hàng' },
   ];
 
   return (
@@ -36,22 +37,15 @@ export default function CheckoutForm({ form, errors, onChange }: { form: Checkou
       {/* Recipient */}
       <div className="bg-white rounded-3xl p-9 shadow-[0_4px_24px_rgba(255,70,158,0.08)] border border-pink-100/30">
         <SectionHeader n="1" title="Thông tin người nhận" />
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {field("name", "Họ và tên *", { placeholder: "Nguyễn Thị Hoa" })}
           {field("phone", "Số điện thoại *", { placeholder: "0912 345 678" })}
-        </div>
-        <div className="mt-5">
-          {field("email", "Email", { placeholder: "email@example.com", type: "email" })}
         </div>
       </div>
 
       {/* Address */}
       <div className="bg-white rounded-3xl p-9 shadow-[0_4px_24px_rgba(255,70,158,0.08)] border border-pink-100/30">
         <SectionHeader n="2" title="Địa chỉ giao hàng" />
-        <div className="grid grid-cols-2 gap-5 mb-5">
-          {field("city", "Tỉnh/Thành phố", { placeholder: "Hà Nội" })}
-          {field("district", "Quận/Huyện", { placeholder: "Đống Đa" })}
-        </div>
         {field("address", "Địa chỉ cụ thể *", {
           placeholder: "Số nhà, đường, phường/xã...",
         })}
@@ -64,11 +58,10 @@ export default function CheckoutForm({ form, errors, onChange }: { form: Checkou
           {paymentOptions.map(({ val, ic, title, sub }) => (
             <label
               key={val}
-              className={`flex items-center gap-5 px-5 py-4 rounded-2xl cursor-pointer border-2 transition-all duration-200 ${
-                form.payment === val
+              className={`flex items-center gap-5 px-5 py-4 rounded-2xl cursor-pointer border-2 transition-all duration-200 ${form.payment === val
                   ? "border-[#ff469e] bg-pink-50"
                   : "border-pink-100/40 bg-white hover:border-pink-200"
-              }`}
+                }`}
             >
               <input
                 type="radio"
@@ -86,11 +79,10 @@ export default function CheckoutForm({ form, errors, onChange }: { form: Checkou
                 <div className="text-[#9e7da3] text-xs mt-0.5">{sub}</div>
               </div>
               <div
-                className={`w-5 h-5 rounded-full border-[2.5px] flex items-center justify-center transition-all ${
-                  form.payment === val
+                className={`w-5 h-5 rounded-full border-[2.5px] flex items-center justify-center transition-all ${form.payment === val
                     ? "bg-[#ff469e] border-[#ff469e]"
                     : "border-gray-300"
-                }`}
+                  }`}
               >
                 {form.payment === val && (
                   <div className="w-2 h-2 rounded-full bg-white" />
@@ -98,6 +90,18 @@ export default function CheckoutForm({ form, errors, onChange }: { form: Checkou
               </div>
             </label>
           ))}
+          {form.payment === 'banking' && (
+            <div className="mt-3 p-4 bg-pink-50 rounded-xl border border-pink-200/60 text-sm text-[#2d1b2e]">
+              <p className="font-bold mb-2">Thông tin chuyển khoản:</p>
+              <p>Ngân hàng: Vietcombank</p>
+              <p>Chủ tài khoản: Nguyễn Văn A</p>
+              <p>Số tài khoản: 0123456789</p>
+              <Image src="/qr-bank.png" alt="QR Code chuyển khoản" width={200} height={200} className="m-auto" />
+              <p className="text-xs text-[#7a5a7e] mt-2">
+                * Vui lòng ghi rõ tên và số điện thoại khi chuyển khoản để chúng tôi dễ dàng đối chiếu đơn hàng.
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

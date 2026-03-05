@@ -47,8 +47,11 @@ export default function ProductDetailPage() {
   return (
     <>
       <div className="flex gap-4 items-center p-2 justify-center fixed bottom-0 left-0 right-0 bg-pink-200 z-999 md:hidden">
-        <Link href="tel:0123456789">
-          <Image src="/logo.png" alt="Logo" width={60} height={60} />
+        <Link href="tel:0932392195">
+          <Image src="/phone.png" alt="phone" width={40} height={40} />
+        </Link>
+        <Link href="https://www.facebook.com/VelariGold?locale=vi_VN" target="_blank">
+          <Image src="/messenger-fb.png" alt="messenger" width={40} height={40} />
         </Link>
         <div className="flex justify-between gap-4">
           <QuantitySelector qty={qty} onChange={setQty} />

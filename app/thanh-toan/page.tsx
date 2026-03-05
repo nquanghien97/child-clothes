@@ -9,29 +9,20 @@ import Link from "next/link";
 export interface CheckoutFormType {
   name: string;
   phone: string;
-  email: string;
   address: string;
-  city: string;
-  district: string;
   note: string;
   payment: string;
-  promo: string;
 }
 
 export default function CheckoutPage() {
 
   const { cart } = useCartStore();
-  console.log("Cart data in CheckoutPage:", cart);
   const [form, setForm] = useState<CheckoutFormType>({
     name: "",
     phone: "",
-    email: "",
     address: "",
-    city: "",
-    district: "",
     note: "",
     payment: "cod",
-    promo: "",
   });
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -51,13 +42,28 @@ export default function CheckoutPage() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate()) return;
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      setLoading(true);
+      const formSubmit = {
+        ...form,
+        productInformation: cart.map(i => `${i.name} x${i.quantity || 1}`).join(", "),
+        price: cart.reduce((s, i) => s + i.price * (i.quantity || 1), 0),
+      }
+      await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formSubmit),
+      });
       setSubmitted(true);
-    }, 2000);
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert("Có lỗi xảy ra khi gửi đơn hàng. Vui lòng thử lại.");
+      return;
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
