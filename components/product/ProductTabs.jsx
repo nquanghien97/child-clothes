@@ -38,9 +38,9 @@ export default function ProductTabs({ product }) {
             <h3 className="font-black text-2xl text-[#2d1b2e] mb-5">
               Mô tả sản phẩm
             </h3>
-            {/* <p className="text-[#7a5a7e] leading-relaxed text-[15px] mb-4">
+            <p className="text-[#7a5a7e] leading-relaxed text-[15px] mb-4">
               {product.description}
-            </p> */}
+            </p>
           </div>
           <div>
             <h3 className="font-black text-2xl text-[#2d1b2e]">

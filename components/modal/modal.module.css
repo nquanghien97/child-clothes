@@ -28,3 +28,10 @@
   border-radius: 8px;
   z-index: 1002;
 }
+
+@media (min-width: 768px) {
+  .wrapper {
+    top: 3rem;
+    bottom: auto;
+  }
+}
