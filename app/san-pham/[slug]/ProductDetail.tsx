@@ -210,7 +210,6 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
-
         <ProductTabs product={product} />
       </div>
     </>

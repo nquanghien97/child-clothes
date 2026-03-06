@@ -141,7 +141,7 @@ export default function ImageSlider({ images, name }: ImageSliderProps) {
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-3 max-md:hidden">
+      <div className="flex gap-3 max-md:hidden py-4">
         {images.map((img, i) => (
           <button
             key={i}

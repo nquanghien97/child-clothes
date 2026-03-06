@@ -4,9 +4,11 @@ import { useState } from "react";
 import StarRating from "../ui/StarRating";
 import { reviews } from "../../lib/data";
 import Image from "next/image";
+import DetailProduct from "./DetailProduct";
 
 export default function ProductTabs({ product }) {
   const [activeTab, setActiveTab] = useState("detail");
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <div className="mt-4 px-2">
@@ -19,11 +21,10 @@ export default function ProductTabs({ product }) {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-7 py-3.5 border-none bg-transparent cursor-pointer font-black text-[15px] transition-all duration-200 -mb-0.5 border-b-[3px] ${
-              activeTab === tab
-                ? "text-[#ff469e] border-b-[#ff469e]"
-                : "text-gray-400 border-b-transparent hover:text-[#ff469e]"
-            }`}
+            className={`px-7 py-3.5 border-none bg-transparent cursor-pointer font-black text-[15px] transition-all duration-200 -mb-0.5 border-b-[3px] ${activeTab === tab
+              ? "text-[#ff469e] border-b-[#ff469e]"
+              : "text-gray-400 border-b-transparent hover:text-[#ff469e]"
+              }`}
           >
             {label}
           </button>
@@ -32,17 +33,17 @@ export default function ProductTabs({ product }) {
 
       {/* Detail tab */}
       {activeTab === "detail" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-4">
             <h3 className="font-black text-2xl text-[#2d1b2e] mb-5">
               Mô tả sản phẩm
             </h3>
-            <p className="text-[#7a5a7e] leading-relaxed text-[15px]">
+            {/* <p className="text-[#7a5a7e] leading-relaxed text-[15px] mb-4">
               {product.description}
-            </p>
+            </p> */}
           </div>
           <div>
-            <h3 className="font-black text-2xl text-[#2d1b2e] mb-5">
+            <h3 className="font-black text-2xl text-[#2d1b2e]">
               Thông số kỹ thuật
             </h3>
             {[
@@ -60,6 +61,14 @@ export default function ProductTabs({ product }) {
                 <span className="text-[#2d1b2e] font-bold">{v}</span>
               </div>
             ))}
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="border border-[#ff469e] rounded-full px-8 py-2 cursor-pointer font-semibold text-[#ff469e]"
+              onClick={() => setShowDetails(true)}
+            >
+              Xem tất cả
+            </button>
           </div>
         </div>
       )}
@@ -84,12 +93,12 @@ export default function ProductTabs({ product }) {
                   star === 5
                     ? 72
                     : star === 4
-                    ? 20
-                    : star === 3
-                    ? 5
-                    : star === 2
-                    ? 2
-                    : 1;
+                      ? 20
+                      : star === 3
+                        ? 5
+                        : star === 2
+                          ? 2
+                          : 1;
                 return (
                   <div
                     key={star}
@@ -156,6 +165,9 @@ export default function ProductTabs({ product }) {
             ))}
           </div>
         </div>
+      )}
+      {showDetails && (
+        <DetailProduct product={product} open={showDetails} onClose={() => setShowDetails(false)} />
       )}
     </div>
   );
